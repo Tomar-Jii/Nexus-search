@@ -1,0 +1,6 @@
+{
+  "name": "Nexus Search",
+  "description": "Advanced AI-powered search engine with live web discovery, Gemini synthesis, voice search, and privacy-first bookmarks.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
