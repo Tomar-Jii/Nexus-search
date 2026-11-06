@@ -7,7 +7,10 @@ import {
   Globe2,
   Trash2,
   Info,
-  ChevronRight
+  ChevronRight,
+  Smartphone,
+  Download,
+  PackageCheck
 } from 'lucide-react';
 import { SafeSearch, SearchRegion, NEXUS_PRODUCT_INFO } from '../types';
 import { StorageService } from '../services/storage';
@@ -195,6 +198,58 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
               </div>
             </div>
             <ChevronRight className="w-5 h-5 text-gray-500 group-hover:text-red-400 transition-colors" />
+          </div>
+        </div>
+
+        {/* Android APK Download Section */}
+        <div>
+          <div className="text-xs font-bold uppercase tracking-wider text-blue-400 mb-2.5">
+            Android Application (APK)
+          </div>
+          <div className="rounded-2xl bg-[#1A1D27] border border-white/10 p-5 shadow-xl space-y-4">
+            <div className="flex items-start justify-between gap-4">
+              <div className="flex items-start gap-3">
+                <div className="p-2.5 rounded-xl bg-blue-500/15 text-blue-400 mt-0.5">
+                  <Smartphone className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold text-white">NEXUS SEARCH for Android</h3>
+                  <p className="text-xs text-gray-400 mt-0.5">
+                    Install the native Android package directly onto your phone.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
+              <a
+                href="/download/apk"
+                download="nexus-search-release.apk"
+                className="flex items-center justify-between p-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition-colors shadow-md shadow-blue-600/20"
+              >
+                <span className="flex items-center gap-2">
+                  <Download className="w-4 h-4" />
+                  Download Release APK
+                </span>
+                <span className="text-[10px] bg-white/20 px-1.5 py-0.5 rounded font-mono">v2.0.0</span>
+              </a>
+
+              <a
+                href="/download/debug-apk"
+                download="nexus-search-debug.apk"
+                className="flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-200 text-xs font-semibold transition-colors"
+              >
+                <span className="flex items-center gap-2">
+                  <PackageCheck className="w-4 h-4 text-cyan-400" />
+                  Download Debug APK
+                </span>
+                <span className="text-[10px] text-gray-400">Testing</span>
+              </a>
+            </div>
+
+            <div className="text-[11px] text-gray-400 bg-white/[0.03] p-3 rounded-xl border border-white/5">
+              💡 <strong>Install Tip:</strong> Open the downloaded APK and toggle on <em>"Allow from this source"</em> if prompted by Android.
+            </div>
           </div>
         </div>
 

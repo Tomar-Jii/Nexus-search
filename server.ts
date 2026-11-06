@@ -497,6 +497,28 @@ Task: Synthesize an exhaustive executive research summary answering the topic, w
   });
 });
 
+// 6. Direct APK & Package Download Endpoints
+app.get('/download/apk', (_req: Request, res: Response) => {
+  const apkPath = path.resolve(process.cwd(), 'public/nexus-search.apk');
+  res.setHeader('Content-Type', 'application/vnd.android.package-archive');
+  res.setHeader('Content-Disposition', 'attachment; filename="nexus-search-release.apk"');
+  res.sendFile(apkPath);
+});
+
+app.get('/download/debug-apk', (_req: Request, res: Response) => {
+  const apkPath = path.resolve(process.cwd(), 'public/nexus-search-debug.apk');
+  res.setHeader('Content-Type', 'application/vnd.android.package-archive');
+  res.setHeader('Content-Disposition', 'attachment; filename="nexus-search-debug.apk"');
+  res.sendFile(apkPath);
+});
+
+app.get('/download/aab', (_req: Request, res: Response) => {
+  const aabPath = path.resolve(process.cwd(), 'public/nexus-search-release.aab');
+  res.setHeader('Content-Type', 'application/octet-stream');
+  res.setHeader('Content-Disposition', 'attachment; filename="nexus-search-release.aab"');
+  res.sendFile(aabPath);
+});
+
 // Vite dev server middleware or Production Static Serving
 async function startServer() {
   if (!isProduction) {

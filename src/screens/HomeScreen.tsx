@@ -10,7 +10,9 @@ import {
   Globe,
   Blocks,
   TrendingUp,
-  History
+  History,
+  Smartphone,
+  Download
 } from 'lucide-react';
 import {
   SearchCategory,
@@ -22,6 +24,7 @@ import {
 import { TRENDING_TOPICS } from '../data/curatedData';
 import { NexusSearchBar } from '../components/NexusSearchBar';
 import { VoiceSearchModal } from '../components/VoiceSearchModal';
+import { ApkDownloadModal } from '../components/ApkDownloadModal';
 
 interface HomeScreenProps {
   onSearch: (query: string, category: SearchCategory) => void;
@@ -40,6 +43,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 }) => {
   const [query, setQuery] = useState('');
   const [isVoiceOpen, setIsVoiceOpen] = useState(false);
+  const [isApkModalOpen, setIsApkModalOpen] = useState(false);
 
   const persona = PERSONA_CONFIG[activePersona];
   const isAngel = activePersona === AssistantPersona.ANGEL;
@@ -68,7 +72,17 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         </button>
 
         {/* Right Action Icons */}
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1.5">
+          {/* Direct APK Download Button */}
+          <button
+            onClick={() => setIsApkModalOpen(true)}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-blue-600/30 to-indigo-600/30 hover:from-blue-600/40 hover:to-indigo-600/40 text-blue-300 border border-blue-500/40 text-xs font-bold transition-all shadow-sm group"
+            title="Download Android APK"
+          >
+            <Smartphone className="w-4 h-4 text-blue-400 group-hover:scale-110 transition-transform" />
+            <span className="inline">Get APK</span>
+          </button>
+
           {isIncognito && (
             <span className="px-2.5 py-1 rounded-full bg-violet-500/20 text-violet-300 border border-violet-500/30 text-[10px] font-bold uppercase mr-1">
               Incognito
@@ -256,6 +270,12 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           setQuery(spokenText);
           onSearch(spokenText, SearchCategory.ALL);
         }}
+      />
+
+      {/* APK Download Modal */}
+      <ApkDownloadModal
+        isOpen={isApkModalOpen}
+        onClose={() => setIsApkModalOpen(false)}
       />
     </div>
   );
